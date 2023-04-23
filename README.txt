@@ -1,13 +1,10 @@
-Es un servicio REST con Java 17, Spring Boot, Spring Security, Spring MVC, Spring JPA (Hibernate) y MySQL Cloud. Tiene manejo transaccional, inyeccion de dependencias,
-validaciones de data de entrada y seguridad.
+Es un servicio REST con Java 17, Spring Boot, Spring Security, Spring MVC, Spring JPA (Hibernate) y MySQL Cloud. Tiene manejo transaccional, inyeccion de dependencias, validaciones de data de entrada y seguridad.
 
-El puerto configurado es el 8081, el servicio debe ser clonado, y ya esta preparado para ser compilado, no se necesita configurar BD ya que apunta a una BD en la nube,
-solo ubicar las credenciales en PlanetScale en caso que hayan caducado.
+El puerto configurado es el 8081, el servicio debe ser clonado, y ya esta preparado para ser compilado, no se necesita configurar BD ya que apunta a una BD en la nube, solo ubicar las credenciales en PlanetScale en caso que hayan caducado.
 
 Para ocuparlo seguir los siguientes pasos:
 
-1. Verificar que la BD en PlanetScale este operativa, y generar nueva nueva contraseña de usuario para conexion a BD, si se genera una nueva password se debe sustituir 
-en el archivo application.properties.
+1. Verificar que la BD en PlanetScale este operativa, y generar nueva nueva contraseña de usuario para conexion a BD, si se genera una nueva password se debe sustituir en el archivo application.properties.
 
     URL:https://app.planetscale.com
     
