@@ -25,18 +25,18 @@ GET - http://localhost:8081/api/hola-mundo?name=queryParamsOpcional
 GET - http://localhost:8081/api/all
 POST - http://localhost:8081/api/personas
 {
-    "pkPersona": 8,  
-	  "pnombre": "Nombre",
-    "papellido": "Apellido",
-	  "page": 50
+    	"pkPersona": 8,  
+	"pnombre": "Nombre",
+    	"papellido": "Apellido",
+	"page": 50
 }
 
 PUT - http://localhost:8081/api/personas
 {
-	  "pkPersona": 6,
-    "pnombre": "Edyireth",
-    "papellido": "Ojeda",
-    "page": 30
+	"pkPersona": 6,
+    	"pnombre": "Edyireth",
+    	"papellido": "Ojeda",
+    	"page": 30
 }
 
 DELETE - http://localhost:3000/api/personas/1
