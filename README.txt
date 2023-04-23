@@ -4,7 +4,7 @@ El puerto configurado es el 8081, el servicio debe ser clonado, y ya esta prepar
 
 Para ocuparlo seguir los siguientes pasos:
 
-1. Verificar que la BD en PlanetScale este operativa, y generar nueva nueva contraseña de usuario para conexion a BD, si se genera una nueva password se debe sustituir en el archivo application.properties.
+1. Verificar que la BD en PlanetScale este operativa, y generar nuevo usuario y password para conexion a BD, ya que las credenciales antiguas al quedar versionadas en githuhb se deshabilitan en planetscale, se deben sustituir en el archivo application.properties.
 
     URL:https://app.planetscale.com
     
