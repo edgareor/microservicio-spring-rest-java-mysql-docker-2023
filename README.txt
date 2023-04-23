@@ -31,6 +31,10 @@ POST - http://localhost:8081/api/personas
 	"page": 50
 }
 
+6. Incluye Dockerfile para construir nuestra imagen Docker. Posicionarnos al nivel del archivo Dockerfile y ejecutar el comando:
+
+    $ docker build -t crud-rest-java-mysql-docker-2023 .
+
 PUT - http://localhost:8081/api/personas
 {
 	"pkPersona": 6,
