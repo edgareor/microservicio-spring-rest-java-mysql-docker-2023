@@ -48,5 +48,13 @@ DELETE - http://localhost:3000/api/personas/1
  Una vez construida la imagen levantar el contenedor con el comando:
  
     $ docker run -p 8081:8081 crud-rest-java-mysql-docker-2023
+
+9. Incluye Kubernetes.yml para desplegar nuestra imagen sobre Kubernetes, tiene HPA(Autoscaling), Service y Deployment. Descargar archivo posicionarse a nivel donde se encuentre y ejecutar el comando:
+
+    $ kubectl apply -f Kubernetes.yml
+
+  Luego el se debe consumir el servicio por el puerto 5153, se modifico para pruebas de diferenciacion.
+
+  NOTA: Si se quiere destruir los recursos creados es con: $ kubectl delete -f Kubernetes.yml
    
    
