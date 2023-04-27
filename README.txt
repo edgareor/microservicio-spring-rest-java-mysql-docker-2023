@@ -49,7 +49,7 @@ DELETE - http://localhost:3000/api/personas/1
  
     $ docker run -p 8081:8081 crud-rest-java-mysql-docker-2023
 
-9. Incluye Kubernetes.yml para desplegar nuestra imagen sobre Kubernetes, tiene HPA(Autoscaling), Service y Deployment. Descargar archivo posicionarse a nivel donde se encuentre y ejecutar el comando:
+7. Incluye Kubernetes.yml para desplegar nuestra imagen sobre Kubernetes, tiene HPA(Autoscaling), Service y Deployment. Descargar archivo posicionarse a nivel donde se encuentre y ejecutar el comando:
 
     $ kubectl apply -f Kubernetes.yml
 
