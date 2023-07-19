@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,6 +56,46 @@ public class Controller {
 			Map<Object, Object> response = new HashMap<>();
 			response.put("message", Instant.now().toString());
 			return ResponseEntity.status(HttpStatus.OK).body(response);
+		} catch (Exception ex) {
+			System.out.println(ex);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex);
+		}
+	}
+
+	@GetMapping("/path-param-query-string/{data}")
+	public ResponseEntity<Object> pathParamQueryString(@PathVariable String data,
+			@RequestParam(required = false) String param1, @RequestParam(required = false) String param2) {
+		try {
+			Map<Object, Object> responseQueryParams = new HashMap<>();
+			responseQueryParams.put("param1", param1);
+			responseQueryParams.put("param2", param2);
+
+			Map<Object, Object> responseData = new HashMap<>();
+			responseData.put("pathParam", data);
+			responseData.put("queryParam", responseQueryParams);
+
+			Map<Object, Object> response = new HashMap<>();
+			response.put("data", responseData);
+			return ResponseEntity.status(HttpStatus.OK).body(response);
+		} catch (Exception ex) {
+			System.out.println(ex);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex);
+		}
+	}
+
+	@GetMapping("/headers")
+	public ResponseEntity<Object> header(@RequestHeader Map<String, String> headers,
+			@RequestHeader("authorization") String authorization) {
+		try {
+			Map<Object, Object> response = new HashMap<>();
+			response.put("headers-entrada", headers);
+			response.put("header-individual", authorization);
+
+			HttpHeaders headersRespuesta = new HttpHeaders(); // Agregar headers a respuesta.
+			headersRespuesta.add("nombreHeader", "valueHeader");
+
+			response.put("header-respuesta", headersRespuesta);
+			return ResponseEntity.status(HttpStatus.OK).headers(headersRespuesta).body(response);
 		} catch (Exception ex) {
 			System.out.println(ex);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex);

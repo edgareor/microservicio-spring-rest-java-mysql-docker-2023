@@ -9,5 +9,4 @@ public class CrudRestJavaMysqlDocker2023Application {
 	public static void main(String[] args) {
 		SpringApplication.run(CrudRestJavaMysqlDocker2023Application.class, args);
 	}
-
 }

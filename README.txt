@@ -1,27 +1,32 @@
-Es un servicio REST con Java 17, Spring Boot, Spring Security, Spring MVC, Spring JPA (Hibernate) y MySQL Cloud. Tiene manejo transaccional, inyeccion de dependencias, validaciones de data de entrada y seguridad.
+Es un servicio REST con Java 17, Spring Boot, Spring Security, Spring MVC, Spring JPA (Hibernate) y MySQL Cloud. Tiene manejo transaccional, inyeccion de dependencias, validaciones de data de entrada y seguridad. Tambien posee documentacion Swagger implementada.
 
 El puerto configurado es el 8081, el servicio debe ser clonado, y ya esta preparado para ser compilado, no se necesita configurar BD ya que apunta a una BD en la nube, solo ubicar las credenciales en PlanetScale en caso que hayan caducado.
 
 Para ocuparlo seguir los siguientes pasos:
 
-1. Verificar que la BD en PlanetScale este operativa, y generar nuevo usuario y password para conexion a BD, ya que las credenciales antiguas al quedar versionadas en githuhb se deshabilitan en planetscale, se deben sustituir en el archivo application.properties.
+1. Verificar que la BD en PlanetScale este operativa, y generar nuevo usuario y password para conexion a BD, ya que las credenciales antiguas al quedar versionadas en github se deshabilitan en planetscale, se deben sustituir en el archivo application.properties. Estas se generan en PlanetScale, Overview, Tables, Connect, New Password.
 
-    URL:https://app.planetscale.com
+    URL: https://app.planetscale.com - Iniciar login con cuenta GitHub
     
 2. Realizar un clone del proyecto desde GitHub.
 
-3. Acceder al directorio donde se ubica el archivo POM.xml, tener instalado Java 17 y Maven y ejecutar el siguiente comando.
+3. Acceder al directorio donde se ubica el archivo POM.xml, tener instalado Java 17 (No funciona con Java 8) y Maven y ejecutar el siguiente comando.
 
     $ mvn clean package
     $ java -jar target/crud-rest-java-mysql-docker-2023-0.0.1-SNAPSHOT.jar
 
-4. El API tiene seguridad Spring Security Basic Auth, solo para efectos de prueba.
+4. El API tiene seguridad Spring Security Basic Auth, solo para efectos de prueba. Username: user y Password: {Token}
 
 El log del levantamiento del server arroja un token para agregarlo como password del usuario en la seguridad Basic Auth.
 
 5. Utilizar los servicios configurados en el puerto 8081:
 
+Doc Swagger - http://localhost:8081/swagger-ui/index.html - Si redirige al login y pide credenciales son: Username: user y Password: {Token}.
+
+GET - http://localhost:8081/api/fechas/actual
 GET - http://localhost:8081/api/hola-mundo?name=queryParamsOpcional
+GET - http://localhost:8081/api/path-param-query-string/informacion?param1=valor1
+GET - http://localhost:8081/api/headers
 GET - http://localhost:8081/api/all
 POST - http://localhost:8081/api/personas
 {
