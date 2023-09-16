@@ -41,9 +41,9 @@ public class Controller {
 	IPersonaService per;
 
 	@GetMapping("/hola-mundo")
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+	public String hello(@RequestParam(defaultValue = "World") String name) {
 		try {
-			return String.format("Hello %s!", name);
+			return "Hello %s!".formatted(name);
 		} catch (Exception ex) {
 			System.out.println(ex);
 			return ex.getMessage();
@@ -85,7 +85,7 @@ public class Controller {
 
 	@GetMapping("/headers")
 	public ResponseEntity<Object> header(@RequestHeader Map<String, String> headers,
-			@RequestHeader("authorization") String authorization) {
+			@RequestHeader String authorization) {
 		try {
 			Map<Object, Object> response = new HashMap<>();
 			response.put("headers-entrada", headers);
@@ -107,6 +107,18 @@ public class Controller {
 		try {
 			Map<Object, Object> response = new HashMap<>();
 			response.put("message", per.getPersonas());
+			return ResponseEntity.status(200).body(response);
+		} catch (Exception ex) {
+			System.out.println(ex);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex);
+		}
+	}
+
+	@GetMapping("/all-desc-by-age")
+	public ResponseEntity<Object> listAllDescByAge() {
+		try {
+			Map<Object, Object> response = new HashMap<>();
+			response.put("message", per.getAllDescByAge());
 			return ResponseEntity.status(200).body(response);
 		} catch (Exception ex) {
 			System.out.println(ex);
@@ -167,6 +179,33 @@ public class Controller {
 				response.put("message", "Entidad eliminada correctamente");
 				return ResponseEntity.status(HttpStatus.OK).body(response);
 			}
+		} catch (Exception ex) {
+			System.out.println(ex);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex);
+		}
+	}
+
+	@GetMapping("/store-procedure")
+	public ResponseEntity<Object> storeProcedure(@RequestParam(required = false) int start,
+			@RequestParam(required = false) int end) {
+		try {
+			double promedio = per.storeProcedure(start, end);
+			Map<Object, Object> response = new HashMap<>();
+			response.put("promedio", promedio);
+			return ResponseEntity.status(HttpStatus.OK).body(response);
+		} catch (Exception ex) {
+			System.out.println(ex);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex);
+		}
+	}
+
+	@GetMapping("/function")
+	public ResponseEntity<Object> function(@RequestParam(required = false) int radio) {
+		try {
+			double area = per.function(radio);
+			Map<Object, Object> response = new HashMap<>();
+			response.put("area", area);
+			return ResponseEntity.status(HttpStatus.OK).body(response);
 		} catch (Exception ex) {
 			System.out.println(ex);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex);

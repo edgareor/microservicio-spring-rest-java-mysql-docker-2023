@@ -1,23 +1,20 @@
-Es un servicio REST con Java 17, Spring Boot, Spring Security, Spring MVC, Spring JPA (Hibernate) y MySQL Cloud. Tiene manejo transaccional, inyeccion de dependencias, validaciones de data de entrada y seguridad. Tambien posee documentacion Swagger implementada.
+Es un servicio REST con Java 17, Spring Boot, Spring Security, Spring MVC, Spring JPA (Hibernate) y MySQL Online. Tiene manejo transaccional, inyeccion de dependencias, validaciones de data de entrada y seguridad. Tambien posee documentacion Swagger implementada.
 
-El puerto configurado es el 8081, el servicio debe ser clonado, y ya esta preparado para ser compilado, no se necesita configurar BD ya que apunta a una BD en la nube, solo ubicar las credenciales en PlanetScale en caso que hayan caducado.
+El puerto configurado es el 8081, el servicio debe ser clonado, y ya esta preparado para ser compilado, no se necesita configurar BD ya que apunta a una BD online, solo ubicar las credenciales en Correo.
 
 Para ocuparlo seguir los siguientes pasos:
-
-1. Verificar que la BD en PlanetScale este operativa, y generar nuevo usuario y password para conexion a BD, ya que las credenciales antiguas al quedar versionadas en github se deshabilitan en planetscale, se deben sustituir en el archivo application.properties. Estas se generan en PlanetScale, Overview, Tables, Connect, New Password.
-
-    URL: https://app.planetscale.com - Iniciar login con cuenta GitHub
     
-2. Realizar un clone del proyecto desde GitHub.
+1. Realizar un clone del proyecto desde GitHub.
+
+2. Verificar que la BD en FreeSqlDatabase este operativa, obtener el user y password enviadas al correo y agregarlas al archivo 
+/spring-rest-java-mysql-docker-2023/src/main/resources/application.properties, ya que por seguridad se borraron de este archivo.
 
 3. Acceder al directorio donde se ubica el archivo POM.xml, tener instalado Java 17 (No funciona con Java 8) y Maven y ejecutar el siguiente comando.
 
     $ mvn clean package
     $ java -jar target/crud-rest-java-mysql-docker-2023-0.0.1-SNAPSHOT.jar
 
-4. El API tiene seguridad Spring Security Basic Auth, solo para efectos de prueba. Username: user y Password: {Token}
-
-El log del levantamiento del server arroja un token para agregarlo como password del usuario en la seguridad Basic Auth.
+4. El API tiene seguridad Spring Security Basic Auth, solo para efectos de prueba. Username: user y Password: userPass
 
 5. Utilizar los servicios configurados en el puerto 8081:
 
@@ -45,6 +42,9 @@ PUT - http://localhost:8081/api/personas
 }
 
 DELETE - http://localhost:3000/api/personas/1
+GET - http://localhost:8081/api/store-procedure?start=1&end=3
+GET - http://localhost:8081/api/function?radio=10
+GET - http://localhost:8081/api/all-desc-by-age
 
 6. Incluye Dockerfile para construir nuestra imagen Docker. Posicionarnos al nivel del archivo Dockerfile y ejecutar el comando:
 

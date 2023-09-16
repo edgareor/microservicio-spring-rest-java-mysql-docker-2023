@@ -51,4 +51,22 @@ public class PersonaServiceImpl implements IPersonaService {
 	public void deleteByPersona(Persona input) {
 		per.delete(input);
 	}
+
+	@Override
+	public double storeProcedure(int start, int end) {
+		double result = per.PROMEDIO_PERSONAS(start, end);
+		return result;
+	}
+
+	@Override
+	public double function(float radio) {
+		double result = per.CALCULAR_AREA(radio);
+		return result;
+	}
+
+	@Override
+	public List<Persona> getAllDescByAge() {
+		List<Persona> lista = per.getAllDescByAge();
+		return lista;
+	}
 }

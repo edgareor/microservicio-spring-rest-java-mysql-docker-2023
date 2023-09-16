@@ -16,4 +16,10 @@ public interface IPersonaService {
 	public void deleteByPersona(Persona per);
 
 	public boolean exists(long id);
+
+	public double storeProcedure(int start, int end);
+
+	public double function(float radio);
+
+	public List<Persona> getAllDescByAge();
 }
